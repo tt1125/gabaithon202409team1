@@ -55,7 +55,7 @@ export const loadGoogleMapsAPI = (setMap) => {
       })
     }
   })({
-    key: process.env.GOOGLE_MAP_KEY, // 環境変数
+    key: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY, // 環境変数
     v: 'beta',
   })
 }
