@@ -11,8 +11,8 @@ const Index = () => {
   }, [])
 
   return (
-    <main style={{ maxWidth: '100%' }}>
-        <div id="map" style={{ height: '80vh', width: '100%' }}></div>
+    <main style={{height : '100%' , width : '100%'}}>
+        <div id="map" style={{height : '100%' , width : '100%' , margin: 0 }}></div>
     </main>  )
 }
 

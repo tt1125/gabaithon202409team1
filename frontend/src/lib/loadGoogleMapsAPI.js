@@ -38,7 +38,7 @@ export const loadGoogleMapsAPI = (setMap) => {
           a.onerror = () => reject(new Error(p + ' could not load.'))
           // ドキュメントの属性を検索
           a.nonce =
-            (m.querySelector('script[nonce]'))?.nonce || ''
+            (m.querySelector('script[nonce]') )?.nonce || ''
           // document.head要素に新しいscript要素aを追加
           m.head.append(a)
         })
@@ -55,7 +55,7 @@ export const loadGoogleMapsAPI = (setMap) => {
       })
     }
   })({
-    key: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY, // 環境変数
+    key: process.env.GOOGLE_MAP_KEY, // 環境変数
     v: 'beta',
   })
 }
