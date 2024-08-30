@@ -11,12 +11,9 @@ const Index = () => {
   }, [])
 
   return (
-    <>
-      <div style={{ maxWidth: '100%' }}>
+    <main style={{ maxWidth: '100%' }}>
         <div id="map" style={{ height: '80vh', width: '100%' }}></div>
-      </div>
-    </>
-  )
+    </main>  )
 }
 
 export default Index
