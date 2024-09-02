@@ -5,12 +5,13 @@ import { getStorage, FirebaseStorage, connectStorageEmulator } from 'firebase/st
 import { getFunctions, Functions, connectFunctionsEmulator } from 'firebase/functions'
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_APIKEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
-  appId: process.env.NEXT_PUBLIC_APPID,
+  apiKey: "AIzaSyA5a_r85qhyK965ym36n6FYywde9itZKwI",
+  authDomain: "gabaithon202409team1-8b6f5.firebaseapp.com",
+  projectId: "gabaithon202409team1-8b6f5",
+  storageBucket: "gabaithon202409team1-8b6f5.appspot.com",
+  messagingSenderId: "935171870608",
+  appId: "1:935171870608:web:49586c61539f27fea4ad15",
+  measurementId: "G-6CPMP9S2X9"
 }
 
 let firebaseApp
