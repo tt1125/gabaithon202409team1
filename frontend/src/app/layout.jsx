@@ -1,7 +1,10 @@
+import '@/styles/globals.css'; // ここでCSSをインポート
+
+
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body style={{margin : 0 , height : '100vh' , width:'100vw'}}>{children}</body>
+      <body style={{ height: '100vh', width: '100vw' }}>{children}</body>
     </html>
   );
 }

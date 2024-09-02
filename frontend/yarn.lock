@@ -334,6 +334,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mui/icons-material@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@mui/icons-material@npm:6.0.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.25.0"
+  peerDependencies:
+    "@mui/material": ^6.0.1
+    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/fac4c194e4ac37f695be7f694cbbd240975326daba2ca24a2c9997e06c9d1bf7bd7fa8d4f0cf08216c4320b97235434eb3661dcce1c70bc0d7c521fd4d0a7b6a
+  languageName: node
+  linkType: hard
+
 "@mui/material@npm:^6.0.1":
   version: 6.0.1
   resolution: "@mui/material@npm:6.0.1"
@@ -809,12 +825,14 @@ __metadata:
   dependencies:
     "@emotion/react": "npm:^11.13.3"
     "@emotion/styled": "npm:^11.13.0"
+    "@mui/icons-material": "npm:^6.0.1"
     "@mui/material": "npm:^6.0.1"
     "@react-google-maps/api": "npm:^2.19.3"
     "@types/react": "npm:^18.3.4"
     next: "npm:14.2.5"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
+    react-icons: "npm:^5.3.0"
   languageName: unknown
   linkType: soft
 
@@ -1101,6 +1119,15 @@ __metadata:
   peerDependencies:
     react: ^18.3.1
   checksum: 10c0/a752496c1941f958f2e8ac56239172296fcddce1365ce45222d04a1947e0cc5547df3e8447f855a81d6d39f008d7c32eab43db3712077f09e3f67c4874973e85
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "react-icons@npm:5.3.0"
+  peerDependencies:
+    react: "*"
+  checksum: 10c0/a53af0de558f0e2bacfbafc973aa8ca1e6a429006a2f83d70becad5be431726a691e096336c95949bb0d967587b145264c5046d2bc1518969dbae731855d0712
   languageName: node
   linkType: hard
 
