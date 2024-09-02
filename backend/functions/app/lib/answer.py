@@ -42,6 +42,18 @@ def answer_question_based_on_markdown(markdown_content, user_question):
     # OpenAIの応答を返す
     return response.choices[0].message.content.strip()
 
+# false(店舗情報を提供しない場合)の処理
+false_prompt = "ユーザーの入力に対して簡潔に返して"
+def answer_question_when_faulse(message):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": false_prompt},
+        ],
+    )
+
+    return response.choices[0].message.content.strip()
+
 # 使用例
 url = "https://www.hotpepper.jp/strJ000555032/food/"
 markdown_content = scrape_and_convert(url)

@@ -40,6 +40,9 @@ def chat(req: https_fn.Request) -> https_fn.Response:
 
         # 店舗情報を返す
         return https_fn.Response(answer)
+    else:
+        return answer_question_when_faulse(message)
+
 
 
     # return https_fn.Response("Hello world!")
