@@ -5,6 +5,8 @@ import Chat from "@/components/Chat";
 import Map from "@/components/Map";
 import { useMediaQuery } from "@mui/material";
 import { mediaQuery } from './globals';
+import cloneDeep from 'lodash/cloneDeep'
+
 
 export default function Home() {
 
@@ -35,32 +37,20 @@ export default function Home() {
     ]
     setQueryText('')
     setMessages(sendMessages)
-    try {
-      const fileDataList = await vectorUseCase.queryFileVector(
-        queryText,
-        namespace,
-        sendMessages,
-        callBackResultText,
-      )
-      handleAddMessageContents({ text: '参考資料', isHeader: true })
-      fileDataList.forEach((data) => {
-        const text = data.fileName
-        handleAddMessageContents({ text, url: data.url, pageNumber: data.pageNumber })
-      })
-    } catch (error) {
-      console.error(error)
-      alert('エラーが発生しました。\n時間をおいて再度お試しください。')
-    }
     handleQueryLoading(false)
   }
 
-  const handleClickStopGenerate = () => {
+  const callBackResultText = (token) => {
     setMessages((prevOutput) => {
       const newOutput = cloneDeep(prevOutput)
-      newOutput.splice(-2, 2)
+      newOutput[newOutput.length - 1].contents[0].text += token
       return newOutput
     })
   }
+
+
+
+
 
   const handleClickReset = () => {
     setMessages([])
@@ -94,7 +84,6 @@ export default function Home() {
             handleClearQueryText={handleClearQueryText}
             handleSendMessage={handleSendMessage}
             handleClickReset={handleClickReset}
-            handleClickStopGenerate={handleClickStopGenerate}
           /></div>
       </main>
   );

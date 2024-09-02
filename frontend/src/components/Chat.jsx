@@ -6,7 +6,7 @@ import SearchBox from './SearchBox'
 import { backgroundColor, backgroundSubColor, mediaQuery } from '@/app/globals'
 import { useMediaQuery } from "@mui/material";
 
-export default function ChatScreen({
+export default function Chat({
   messages,
   queryText,
   queryLoading,
@@ -29,10 +29,10 @@ export default function ChatScreen({
     <>
       <div
         style={{
-          height: '100vh',
+          // height: '100vh',
           overflowY: 'auto',
           marginBottom: '0',
-          paddingTop: '64px',
+          // paddingTop: '64px',
           paddingBottom: '200px',
         }}
       >
@@ -94,8 +94,8 @@ export default function ChatScreen({
           gap: '8px',
           position: 'fixed', // 追加
           bottom: '0', // 追加
-          maxWidth: '800px',
-          // width: '100%',
+          maxWidth: isMobileSize ? '' : '800px', // 修正
+          width: isMobileSize ? '100%' : '', // 修正
           backgroundColor: 'white', // 背景色を追加して重なりを防ぐ
           padding: '16px', // パディングを追加して見た目を調整
         }}
