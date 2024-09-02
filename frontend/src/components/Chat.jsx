@@ -35,7 +35,7 @@ export default function Chat({
           overflowY: 'auto',
           marginBottom: '0',
           // paddingTop: '64px',
-          // paddingBottom: '200px',
+          paddingBottom: '100px',
         }}
       >
         {messages.map((msg, idx) => (
@@ -99,6 +99,7 @@ export default function Chat({
           width: isMobileSize ? '100%' : '', // 修正
           backgroundColor: 'white', // 背景色を追加して重なりを防ぐ
           padding: '16px', // パディングを追加して見た目を調整
+
         }}
       >
         <SearchBox
@@ -120,9 +121,7 @@ export default function Chat({
           onClick={handleClickReset}
           disabled={queryLoading || !messages.length}
         >
-
           <RestartAltIcon />
-
         </Button>
       </div>
     </>

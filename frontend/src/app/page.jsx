@@ -20,6 +20,8 @@ export default function Home() {
   const [queryText, setQueryText] = useState('')
   const [queryLoading, setQueryLoading] = useState(false)
 
+  useEffect(() => { console.log(messages) }, [messages])
+
   const isMobileSize = useMediaQuery(mediaQuery.sp);
 
   const handleInputQueryText = (e) => {
@@ -53,15 +55,31 @@ export default function Home() {
       // handleAddMessageContents({ text: '参考資料', isHeader: true })
       // fileDataList.forEach((data) => {
       //   const text = data.fileName
-      // handleAddMessageContents({ text, url: data.url, pageNumber: data.pageNumber })
+      //   handleAddMessageContents({ text, url: data.url, pageNumber: data.pageNumber })
       // })
+      handleAddMessageContents(response)
     } catch (error) {
       console.error(error)
       alert('エラーが発生しました。\n時間をおいて再度お試しください。')
     }
     handleQueryLoading(false)
   }
+  const handleAddMessageContents = (response) => {
+    setMessages((prevOutput) => {
+      const newOutput = cloneDeep(prevOutput);
+      const lastMessage = newOutput[newOutput.length - 1];
+      const lastContent = lastMessage.contents[lastMessage.contents.length - 1];
 
+      // `text`フィールドに新しいテキストを追加
+      if (lastContent.text !== undefined) {
+        lastContent.text += response.data;
+      } else {
+        lastMessage.contents.push({ text: response.data });
+      }
+
+      return newOutput;
+    });
+  };
 
   const handleClickReset = () => {
     setMessages([])
