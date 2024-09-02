@@ -15,7 +15,8 @@ response = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "メッセージに対して返答して"},
-        {"role": "user", "content": "こんにちは"},
+        {"role": "system", "content": "知らないことは「知らない」と回答して"},
+        {"role": "user", "content": "鶴盛士という人物について簡潔に解説して"},
     ],
 )
 
