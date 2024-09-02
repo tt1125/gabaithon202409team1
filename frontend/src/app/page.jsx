@@ -68,7 +68,6 @@ export default function Home() {
           handleClearQueryText={handleClearQueryText}
           handleSendMessage={handleSendMessage}
           handleClickReset={handleClickReset}
-          handleClickStopGenerate={handleClickStopGenerate}
         /></div>
       </main>
       :
