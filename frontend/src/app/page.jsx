@@ -3,8 +3,8 @@
 import { useState } from 'react'; // ここを追加
 import Chat from "@/components/Chat";
 import Map from "@/components/Map";
-import { mediaQuery } from "@/styles/globals";
 import { useMediaQuery } from "@mui/material";
+import { mediaQuery } from './globals';
 
 export default function Home() {
 
@@ -83,17 +83,19 @@ export default function Home() {
       </main>
       :
       <main style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ width: '100%', height: '55%' }}><Map defaultPosition={{ lat: 35.681236, lng: 139.767125 }} /></div>
-        <div style={{ width: '100%', height: '45%' }}><Chat
-          messages={messages}
-          queryText={queryText}
-          queryLoading={queryLoading}
-          handleInputQueryText={handleInputQueryText}
-          handleClearQueryText={handleClearQueryText}
-          handleSendMessage={handleSendMessage}
-          handleClickReset={handleClickReset}
-          handleClickStopGenerate={handleClickStopGenerate}
-        /></div>
+        <div style={{ width: '100%', height: '55%' }}>
+          <Map defaultPosition={{ lat: 35.681236, lng: 139.767125 }} /></div>
+        <div style={{ width: '100%', height: '45%' }}>
+          <Chat
+            messages={messages}
+            queryText={queryText}
+            queryLoading={queryLoading}
+            handleInputQueryText={handleInputQueryText}
+            handleClearQueryText={handleClearQueryText}
+            handleSendMessage={handleSendMessage}
+            handleClickReset={handleClickReset}
+            handleClickStopGenerate={handleClickStopGenerate}
+          /></div>
       </main>
   );
 }
