@@ -3,10 +3,11 @@
 import { loadGoogleMapsAPI } from "@/lib/loadGoogleMapsAPI";
 import { useEffect, useState } from "react";
 
-const Index = () => {
+const Map = () => {
+
   const [map, setMap] = useState(null);
-  const [currentPosition, setCurrentPosition] = useState(null);
   const [marker, setMarker] = useState(null); // 新しい状態を追加
+  const [currentPosition, setCurrentPosition] = useState(null);
 
   useEffect(() => {
     loadGoogleMapsAPI(setMap);
@@ -40,8 +41,8 @@ const Index = () => {
   }, [map, marker]); // markerを依存関係に追加
 
   return (
-      <div id="map" style={{ height: "100%", width: "100%", margin: 0 }}></div>
+    <div id="map" style={{ height: "100%", width: "100%", margin: 0 }}></div>
   );
 };
 
-export default Index;
+export default Map;

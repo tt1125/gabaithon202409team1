@@ -10,6 +10,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 export default function Home() {
 
+  // Chat
   const [messages, setMessages] = useState([])
   const [queryText, setQueryText] = useState('')
   const [queryLoading, setQueryLoading] = useState(false)
@@ -48,33 +49,20 @@ export default function Home() {
     })
   }
 
-
-
-
-
   const handleClickReset = () => {
     setMessages([])
   }
 
+  // Map
+
+
   return (
     !isMobileSize ?
       <main style={{ height: '100%', width: '100%', display: 'flex' }}>
-        <div style={{ width: '70%' }}><Map defaultPosition={{ lat: 35.681236, lng: 139.767125 }} /></div>
-        <div style={{ width: '30%' }}><Chat
-          messages={messages}
-          queryText={queryText}
-          queryLoading={queryLoading}
-          handleInputQueryText={handleInputQueryText}
-          handleClearQueryText={handleClearQueryText}
-          handleSendMessage={handleSendMessage}
-          handleClickReset={handleClickReset}
-        /></div>
-      </main>
-      :
-      <main style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ width: '100%', height: '55%' }}>
-          <Map defaultPosition={{ lat: 35.681236, lng: 139.767125 }} /></div>
-        <div style={{ width: '100%', height: '45%' }}>
+        <div style={{ width: '70%' }}>
+          <Map defaultPosition={{ lat: 35.681236, lng: 139.767125 }} />
+        </div>
+        <div style={{ width: '30%' }}>
           <Chat
             messages={messages}
             queryText={queryText}
@@ -83,7 +71,26 @@ export default function Home() {
             handleClearQueryText={handleClearQueryText}
             handleSendMessage={handleSendMessage}
             handleClickReset={handleClickReset}
-          /></div>
+          />
+        </div>
+      </main>
+      :
+      <main style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
+        {/* Set the height of the Map and Chat components using percentages */}
+        <div style={{ height: '55%', width: '100%' }}>
+          <Map defaultPosition={{ lat: 35.681236, lng: 139.767125 }} />
+        </div>
+        <div style={{ height: '45%', width: '100%', overflowY: 'auto' }}>
+          <Chat
+            messages={messages}
+            queryText={queryText}
+            queryLoading={queryLoading}
+            handleInputQueryText={handleInputQueryText}
+            handleClearQueryText={handleClearQueryText}
+            handleSendMessage={handleSendMessage}
+            handleClickReset={handleClickReset}
+          />
+        </div>
       </main>
   );
 }
