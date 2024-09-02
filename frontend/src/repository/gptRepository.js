@@ -12,7 +12,10 @@ export default class GptRepository {
 
       const result = await useChatGpt({ message, sendMessages, lat, lng })
 
-      return result.data
+      console.log(result)
+
+      return result
+
     } catch (e) {
       throw new Error(e.message)
     }

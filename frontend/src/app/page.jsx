@@ -8,7 +8,7 @@ import { mediaQuery } from './globals';
 import cloneDeep from 'lodash/cloneDeep'
 import GptUseCase from '@/useCase/gptUseCase';
 import { loadGoogleMapsAPI } from "@/lib/loadGoogleMapsAPI";
-import { APIProvider } from "@vis.gl/react-google-maps";
+
 
 
 export default function Home() {
@@ -45,16 +45,16 @@ export default function Home() {
     setQueryText('')
     setMessages(sendMessages)
     try {
-      const fileDataList = await gptUseCase.sendMessage(
+      const response = await gptUseCase.sendMessage(
         queryText,
         sendMessages,
         currentPosition
       )
-      handleAddMessageContents({ text: '参考資料', isHeader: true })
-      fileDataList.forEach((data) => {
-        const text = data.fileName
-        // handleAddMessageContents({ text, url: data.url, pageNumber: data.pageNumber })
-      })
+      // handleAddMessageContents({ text: '参考資料', isHeader: true })
+      // fileDataList.forEach((data) => {
+      //   const text = data.fileName
+      // handleAddMessageContents({ text, url: data.url, pageNumber: data.pageNumber })
+      // })
     } catch (error) {
       console.error(error)
       alert('エラーが発生しました。\n時間をおいて再度お試しください。')
