@@ -1,13 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { FaRobot } from 'react-icons/fa'
-import { backgroundColor, backgroundSubColor } from '@/styles/globals'
 import Button from '@mui/material/Button'
-import Link from '@mui/material/Link'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import { mainColor } from '@/styles/globals'
 import SearchBox from './SearchBox'
+import { backgroundColor, backgroundSubColor, mediaQuery } from '@/app/globals'
+import { useMediaQuery } from "@mui/material";
 
-export default function ChatScreen({
+export default function Chat({
   messages,
   queryText,
   queryLoading,
@@ -15,8 +14,10 @@ export default function ChatScreen({
   handleClearQueryText,
   handleSendMessage,
   handleClickReset,
-  handleClickStopGenerate,
 }) {
+
+  const isMobileSize = useMediaQuery(mediaQuery.sp)
+
   const messagesEndRef = useRef(null)
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -28,10 +29,10 @@ export default function ChatScreen({
     <>
       <div
         style={{
-          height: '100vh',
+          // height: '100vh',
           overflowY: 'auto',
           marginBottom: '0',
-          paddingTop: '64px',
+          // paddingTop: '64px',
           paddingBottom: '200px',
         }}
       >
@@ -78,30 +79,6 @@ export default function ChatScreen({
                         </div>
                       )
                     }
-                  } else {
-                    return (
-                      <div key={index}>
-                        <span>「</span>
-                        {/* <Link
-                          rel="noopener"
-                          target="_blank"
-                          color="inherit"
-                          href={content.url + '#page=' + content.pageNumber}
-                        >
-                          <span className="font-bold">{content.text}</span>
-                        </Link> */}
-                        <span
-                          className="font-bold"
-                          style={{ cursor: 'pointer' }}
-                          onClick={() => setPdf(content.url + '#page=' + content.pageNumber)}
-                        >
-                          {content.text}
-                        </span>
-                        <span>」の</span>
-                        <span className="font-bold">{content.pageNumber}</span>
-                        <span>ページ目</span>
-                      </div>
-                    )
                   }
                 })}
               </div>
@@ -117,31 +94,14 @@ export default function ChatScreen({
           gap: '8px',
           position: 'fixed', // 追加
           bottom: '0', // 追加
-          maxWidth: '800px',
-          width: '100%',
+          maxWidth: isMobileSize ? '' : '800px', // 修正
+          width: isMobileSize ? '100%' : '', // 修正
           backgroundColor: 'white', // 背景色を追加して重なりを防ぐ
           padding: '16px', // パディングを追加して見た目を調整
         }}
       >
-        {/* <div className="w-full flex justify-end">
-          {queryLoading && (
-            <Button
-              variant="outlined"
-              component="label"
-              color="error"
-              sx={{
-                height: '30px',
-                width: '200px',
-                borderRadius: '12px',
-              }}
-              onClick={handleClickStopGenerate}
-            >
-              生成を中止する
-            </Button>
-          )}
-        </div> */}
         <SearchBox
-          label="検索文章を入力してください"
+          label=""
           queryText={queryText}
           handleSearch={handleSendMessage}
           handleInputText={handleInputQueryText}
@@ -160,7 +120,7 @@ export default function ChatScreen({
           onClick={handleClickReset}
           disabled={queryLoading || !messages.length}
         >
-          新しいページにリセット
+          会話をリセット
         </Button>
       </div>
     </>
