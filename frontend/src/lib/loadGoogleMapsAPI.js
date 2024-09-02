@@ -38,7 +38,7 @@ export const loadGoogleMapsAPI = (setMap) => {
           a.onerror = () => reject(new Error(p + ' could not load.'))
           // ドキュメントの属性を検索
           a.nonce =
-            (m.querySelector('script[nonce]'))?.nonce || ''
+            (m.querySelector('script[nonce]') )?.nonce || ''
           // document.head要素に新しいscript要素aを追加
           m.head.append(a)
         })
