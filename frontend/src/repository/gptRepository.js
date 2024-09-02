@@ -1,16 +1,21 @@
 import { functions } from "@/lib/firebase"
-
+import { httpsCallable } from "firebase/functions"
 
 export default class GptRepository {
-  async useChatGPT(prompt) {
+  async sendMessage(message, sendMessages, currentPosition) {
     try {
+      const { lat, lng } = currentPosition;
 
-        // const sendMessage
+      const useChatGpt = httpsCallable(functions, 'test', {
+        timeout: 3600 * 1000,
+      })
 
+      const result = await useChatGpt({ message, sendMessages, lat, lng })
 
-      return text
+      return result.data
     } catch (e) {
       throw new Error(e.message)
     }
+
   }
 }
