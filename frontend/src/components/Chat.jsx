@@ -5,6 +5,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle'
 import SearchBox from './SearchBox'
 import { backgroundColor, backgroundSubColor, mediaQuery } from '@/app/globals'
 import { useMediaQuery } from "@mui/material";
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+
 
 export default function Chat({
   messages,
@@ -29,11 +31,11 @@ export default function Chat({
     <>
       <div
         style={{
-          // height: '100vh',
+          height: messages.length > 10 ? '100vh' : 'auto', // 条件に応じて高さを変更
           overflowY: 'auto',
           marginBottom: '0',
           // paddingTop: '64px',
-          paddingBottom: '200px',
+          // paddingBottom: '200px',
         }}
       >
         {messages.map((msg, idx) => (
@@ -90,7 +92,6 @@ export default function Chat({
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
           gap: '8px',
           position: 'fixed', // 追加
           bottom: '0', // 追加
@@ -110,9 +111,8 @@ export default function Chat({
         <Button
           variant="contained"
           component="label"
-          color="info"
           sx={{
-            height: '40px',
+            height: 'full',
             borderRadius: '12px',
             fontWeight: 'bold',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -120,7 +120,9 @@ export default function Chat({
           onClick={handleClickReset}
           disabled={queryLoading || !messages.length}
         >
-          会話をリセット
+
+          <RestartAltIcon />
+
         </Button>
       </div>
     </>
