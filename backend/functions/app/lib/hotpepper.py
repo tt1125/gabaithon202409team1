@@ -31,3 +31,5 @@ if "results" in data and "shop" in data["results"]:
         print("-" * 40)
 else:
     print("データを取得できませんでした。")
+
+# def get_Turu()

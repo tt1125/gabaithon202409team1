@@ -8,7 +8,8 @@ def find_places(query, location):
     response = requests.get(endpoint)
     return response.json()
 
-result = find_places("人力うどん", "33.299939, 130.509972")
+# 使用例
+# result = find_places("人力うどん", "33.299939, 130.509972")
 
-print(result['results'][0])
+# print(result['results'][0])
 
