@@ -11,7 +11,6 @@ from app.lib.hotpepper import get_store_info
 
 initialize_app()
 
-
 @https_fn.on_request()
 def chat(req: https_fn.Request) -> https_fn.Response:
     message = "適当に" # ユーザーからのメッセージ
