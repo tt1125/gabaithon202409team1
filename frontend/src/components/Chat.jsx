@@ -97,9 +97,7 @@ export default function Chat({
           bottom: '0', // 追加
           maxWidth: isMobileSize ? '' : '800px', // 修正
           width: isMobileSize ? '100%' : '', // 修正
-          backgroundColor: 'white', // 背景色を追加して重なりを防ぐ
           padding: '16px', // パディングを追加して見た目を調整
-
         }}
       >
         <SearchBox

@@ -4,6 +4,7 @@ import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
+import { backgroundColor, backgroundSubColor } from '@/app/globals'
 
 
 export default function CustomizedInputBase(props) {
