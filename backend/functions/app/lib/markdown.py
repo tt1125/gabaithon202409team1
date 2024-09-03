@@ -48,10 +48,10 @@ def scrape_and_convert(url, output_file):
 #             raise
 
 # 使用例
-try:
-    url = "https://www.hotpepper.jp/strJ000555032/food/"
-    output_file = "output.md"
-    markdown_content = scrape_and_convert(url, output_file)
-    print(markdown_content)
-except requests.exceptions.RequestException as e:
-    print(f"最終的なエラー: {e}")
+# try:
+#     url = "https://www.hotpepper.jp/strJ000555032/food/"
+#     output_file = "output.md"
+#     markdown_content = scrape_and_convert(url, output_file)
+#     print(markdown_content)
+# except requests.exceptions.RequestException as e:
+#     print(f"最終的なエラー: {e}")

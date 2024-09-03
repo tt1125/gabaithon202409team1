@@ -29,7 +29,7 @@ def extract_keywords(user_input):
     return response.choices[0].message.content.strip()
 
 # # テスト例
-# # user_input = "駅から近いうどんを食べたい"
+# user_input = "駅から近いうどんを食べたい"
 # # user_input = "駅から近い家族で入れるお風呂に入りたい"
 # user_input = "駅前不動産スタジアムから車で10分以内で食べられるラーメン屋"
 # keywords = extract_keywords(user_input)

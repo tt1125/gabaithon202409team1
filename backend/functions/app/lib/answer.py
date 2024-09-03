@@ -55,9 +55,9 @@ def answer_question_when_faulse(message):
     return response.choices[0].message.content.strip()
 
 # 使用例
-url = "https://www.hotpepper.jp/strJ000555032/food/"
-markdown_content = scrape_and_convert(url)
+# url = "https://www.hotpepper.jp/strJ000555032/food/"
+# markdown_content = scrape_and_convert(url)
 
-user_question = "この店でおすすめのメニューは何ですか？"
-answer = answer_question_based_on_markdown(markdown_content, user_question)
-print(answer)
+# user_question = "この店でおすすめのメニューは何ですか？"
+# answer = answer_question_based_on_markdown(markdown_content, user_question)
+# print(answer)

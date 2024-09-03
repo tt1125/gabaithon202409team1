@@ -43,3 +43,5 @@ def should_provide_store_info(user_text):
 # # # テスト例
 # print(should_provide_store_info("こんにちは"))  # 期待される結果: {"user_text": "こんにちは", "provide_store_info": False}
 # print(should_provide_store_info("駅近くのうどん"))  # 期待される結果: {"user_text": "駅近くのうどん", "provide_store_info": True}
+
+# print(should_provide_store_info("ラーメン"))  # 期待される結果: {"user_text": "こんにちは", "provide_store_info": False}

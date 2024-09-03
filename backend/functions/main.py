@@ -7,18 +7,20 @@ from app.lib.places import *
 from app.lib.getURL import *
 from app.lib.markdown import *
 from app.lib.answer import *
-from app.lib.hotpepper import get_store_info
+# from app.lib.hotpepper import get_store_info
 
 initialize_app()
 
 @https_fn.on_request()
-def chat(req: https_fn.Request) -> https_fn.Response:
-    message = "適当に" # ユーザーからのメッセージ
+def chat() -> https_fn.Response:
+    message = "ラーメンが食べたい" # ユーザーからのメッセージ
     lat = 33.37311371162849 # 緯度
     lng = 130.2056181065671 # 経度
 
     # 店舗情報を提供するかどうかを判断
     provide_store_info = should_provide_store_info(message) # True or False
+    # print(provide_store_info)
+    # print(json.loads(provide_store_info))
  
     # 店舗情報を提供する場合(True)
     if provide_store_info:
@@ -45,5 +47,6 @@ def chat(req: https_fn.Request) -> https_fn.Response:
 
 
     # return https_fn.Response("Hello world!")
-    return "生成された解答内容をstringで，店舗の位置も含めて返す"
+    # return "生成された解答内容をstringで，店舗の位置も含めて返す"
 
+print(chat())
