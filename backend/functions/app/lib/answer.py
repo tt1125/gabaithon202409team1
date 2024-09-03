@@ -33,7 +33,7 @@ def answer_question_based_on_markdown(markdown_content, user_question):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "以下のマークダウン情報を元に、ユーザーの質問に答えてください。"},
+            {"role": "system", "content": "以下のマークダウン情報は、ユーザーの質問文と位置情報をもとに検索をかけた結果です。これを元に、ユーザーの質問に対して詳細に答えてください。"},
             {"role": "system", "content": markdown_content},
             {"role": "user", "content": user_question},
         ],
@@ -43,12 +43,25 @@ def answer_question_based_on_markdown(markdown_content, user_question):
     return response.choices[0].message.content.strip()
 
 # false(店舗情報を提供しない場合)の処理
-false_prompt = "ユーザーの入力に対して簡潔に返して"
-def answer_question_when_faulse(message):
+false_prompt = "ユーザーの入力と位置情報に対してコメントを返してください。"
+def answer_question_when_faulse(message,lat , lng):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": false_prompt},
+            {"role": "user", "content": f"{message} 位置情報    {lat} , {lng}"},
+        ],
+    )
+
+    return response.choices[0].message.content.strip()
+
+not_found_prompt = "近くにユーザーの要望に沿ったお店がないか探しましたが、見つかりませんでした。その代わり、ユーザーの質問文と位置情報をもとにコメントを返してください。また、お店は見つかったが具体的な情報が得られなかった場合は、店舗名だけ記載します"
+def answer_question_when_not_found(message,store_name,lat , lng):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": not_found_prompt},
+            {"role": "user", "content": f"{message} 店舗名 {store_name}  位置情報    {lat} , {lng}"},
         ],
     )
 

@@ -18,7 +18,7 @@ client = AzureOpenAI(
 def should_provide_store_info(user_text):
     # GPTに渡すメッセージを作成
     messages = [
-        {"role": "system", "content": "ユーザーの入力が店舗情報を提供する必要があるかどうかを判断してください。\
+        {"role": "system", "content": "ユーザーの入力が食べ物や店の種類、施設の種類など、店舗に関係ありそうなメッセージかどうかを判定してください。\
                                        店舗情報が必要ならTrueを、不要ならFalseを返してください。形式は以下のJSON形式で返してください {'provide_store_info': bool}"},
         {"role": "user", "content": user_text},
     ]

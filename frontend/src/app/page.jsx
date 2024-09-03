@@ -99,7 +99,6 @@ export default function Home() {
     const handlePositionUpdate = (position) => {
       const { latitude, longitude } = position.coords;
       const newPosition = { lat: latitude, lng: longitude };
-      console.log(newPosition, "⭐️");
       setCurrentPosition(newPosition);
 
       if (map) {

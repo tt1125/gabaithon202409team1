@@ -3,6 +3,7 @@ from firebase_admin import initialize_app
 from firebase_functions import options
 import json
 
+from app.lib.answer import answer_question_when_not_found
 from app.lib.bool import *
 from app.lib.keyword import *
 from app.lib.places import *
@@ -65,30 +66,37 @@ def chat(message , lat , lng) :
 
     # 店舗情報を提供する場合(True)
     if provide_store_info:
-        # 1.キーワードを取得
-        keyword = extract_keywords(message)
-        print(f"keyword: {keyword}")  # デバッグプリント
 
-        # 2.位置情報とキーワードをもとに店舗名を取得
-        store_name = find_places(keyword, f"{lat},{lng}")
-        print(f"store_name: {store_name}")  # デバッグプリント
+        try:
+            store_name = ""
 
-        # 3.店舗名をもとにAPIからURLを取得
-        store_url = get_store_url_by_name(store_name)
-        print(f"store_url: {store_url}")  # デバッグプリント
+            # 1.キーワードを取得
+            keyword = extract_keywords(message)
+            print(f"keyword: {keyword}")  # デバッグプリント
 
-        if store_url is None:
-            return answer_question_when_faulse(message)
-        
-        # 4.店舗URLをもとに店舗情報を取得
-        store_info = scrape_and_convert(store_url, "output.md")
-        print(f"store_info: {store_info}")  # デバッグプリント
 
-        # 5.店舗情報をもとに解答を生成
-        answer = answer_question_based_on_markdown(store_info, message)
-        print(f"answer: {answer}")  # デバッグプリント
+            # 2.位置情報とキーワードをもとに店舗名を取得
+            store_name = find_places(keyword, f"{lat},{lng}")
+            print(f"store_name: {store_name}")  # デバッグプリント
 
-        # 店舗情報を返す
-        return https_fn.Response(answer)
+            # 3.店舗名をもとにAPIからURLを取得
+            store_url = get_store_url_by_name(store_name)
+            print(f"store_url: {store_url}")  # デバッグプリント
+
+            if store_url is None:
+                return answer_question_when_faulse(message)
+            
+            # 4.店舗URLをもとに店舗情報を取得
+            store_info = scrape_and_convert(store_url)
+            print(f"store_info: {store_info}")  # デバッグプリント
+
+            # 5.店舗情報をもとに解答を生成
+            answer = answer_question_based_on_markdown(store_info, message)
+            print(f"answer: {answer}")  # デバッグプリント
+
+            # 店舗情報を返す
+            return answer
+        except :
+            return answer_question_when_not_found(message,store_name ,lat , lng)
     else:
-        return answer_question_when_faulse(message)
+        return answer_question_when_faulse(message ,lat , lng)

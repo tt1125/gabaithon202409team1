@@ -4,12 +4,20 @@ import json
 GOOGLE_API_KEY = "AIzaSyB_pbAH9btclPdynNTes1lHSQhmy5yugEM"
 
 def find_places(query, location):
-    endpoint = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={GOOGLE_API_KEY}&location={location}&radius=1500&type=restaurant&keyword={query}"
+    endpoint = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={GOOGLE_API_KEY}&location={location}&radius=50000&type=restaurant&keyword={query}"
     response = requests.get(endpoint)
-    print(response.json() , "⭐️")
-    return response.json()
+    result = response.json()
+    
+    # リストが空でないか確認
+    if result['results']:
+        name = result['results'][0]['name']
+        return name
+    else:
+        return None  # または適切なデフォルト値やエラーメッセージを返す
 
-# 使用例
-# result = find_places("人力うどん", "33.299939, 130.509972")
+result = find_places("レストラン", "3.373084793022144, 130.2055574316023")
 
-# print(result['results'][0])
+if result:
+    print(result)
+else:
+    print("No results found")
