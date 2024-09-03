@@ -70,7 +70,7 @@ export default function Chat({
                       if (!content.text)
                         return (
                           <div key={index} className="loading">
-                            ....
+                            回答中...
                           </div>
                         )
                       else return content.text

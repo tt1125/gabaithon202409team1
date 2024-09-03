@@ -4,9 +4,9 @@ import { httpsCallable } from "firebase/functions"
 export default class GptRepository {
   async sendMessage(message, sendMessages, currentPosition) {
     try {
-      const { lat, lng } = currentPosition;
+      const { lat, lng } = currentPosition
 
-      const useChatGpt = httpsCallable(functions, 'test', {
+      const useChatGpt = httpsCallable(functions, 'gpt', {
         timeout: 3600 * 1000,
       })
 

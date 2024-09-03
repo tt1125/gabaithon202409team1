@@ -57,6 +57,7 @@ export default function Home() {
       //   const text = data.fileName
       //   handleAddMessageContents({ text, url: data.url, pageNumber: data.pageNumber })
       // })
+
       handleAddMessageContents(response)
     } catch (error) {
       console.error(error)
@@ -98,6 +99,7 @@ export default function Home() {
     const handlePositionUpdate = (position) => {
       const { latitude, longitude } = position.coords;
       const newPosition = { lat: latitude, lng: longitude };
+      console.log(newPosition, "⭐️");
       setCurrentPosition(newPosition);
 
       if (map) {
