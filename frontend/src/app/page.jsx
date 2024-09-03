@@ -8,6 +8,7 @@ import { backgroundColor, mediaQuery } from './globals';
 import cloneDeep from 'lodash/cloneDeep'
 import GptUseCase from '@/useCase/gptUseCase';
 import { loadGoogleMapsAPI } from "@/lib/loadGoogleMapsAPI";
+import GoogleMap from '@/components/GoogleMap';
 
 
 
@@ -129,7 +130,7 @@ export default function Home() {
     !isMobileSize ?
       <main style={{ height: '100%', width: '100%', display: 'flex' }}>
         <div style={{ width: '70%' }}>
-          <Map targetPosition={targetPosition} setTargetPosition={setTargetPosition} />
+          <GoogleMap />
         </div>
         <div style={{ width: '30%', backgroundColor: backgroundColor }}>
           <Chat
