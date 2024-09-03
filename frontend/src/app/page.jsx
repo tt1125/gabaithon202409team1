@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'; // ここを追加
 import Chat from "@/components/Chat";
-import Map from "@/components/Map";
 import { useMediaQuery } from "@mui/material";
 import { backgroundColor, mediaQuery } from './globals';
 import cloneDeep from 'lodash/cloneDeep'
@@ -146,9 +145,8 @@ export default function Home() {
       </main>
       :
       <main style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
-        {/* Set the height of the Map and Chat components using percentages */}
         <div style={{ height: '55%', width: '100%' }}>
-          <Map targetPosition={targetPosition} setTargetPosition={setTargetPosition} />
+          <GoogleMap />
         </div>
         <div style={{ height: '45%', width: '100%', overflowY: 'auto' }}>
           <Chat
