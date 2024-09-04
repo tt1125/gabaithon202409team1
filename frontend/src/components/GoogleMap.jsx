@@ -1,8 +1,5 @@
-// src/components/GoogleMap.tsx
 import { mapPrefectures } from '@/datas/mapPrefectures';
-import { Preview } from '@mui/icons-material';
 import { Button, CircularProgress } from '@mui/material';
-import { set } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardHeader, CardBody, Heading, Text, Stack, StackDivider, Box, Image } from '@chakra-ui/react';
 
@@ -18,19 +15,20 @@ const GoogleMap = () => {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
     const [location, setLocation] = useState(null); // 緯度経度stateの追加
-    const [shops, setShops] = useState([]);// 周辺店舗stateの追加
+    const [shops, setShops] = useState([]); // 周辺店舗stateの追加
     const [startLocation, setStartLocation] = useState(null); // スタート地点state(追加)
     const [endLocation, setEndLocation] = useState(null); // ゴール地点state追加
     const [directionsRenderer, setDirectionsRenderer] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [ariaLabel, setAriaLabel] = useState('');
 
     const previewClicked = () => {
         const dialogElement = document.querySelector('[role="dialog"]');
         if (!dialogElement) return; // dialogElementがない時はreturn
-        const ariaLabel = dialogElement.getAttribute('aria-label');
+        const shop = dialogElement.getAttribute('aria-label');
+        setAriaLabel(shop || ''); // nullチェック
         setIsOpen(true);
-    }
-
+    };
 
     useEffect(() => {
         if (!mapRef.current) return;
@@ -75,7 +73,6 @@ const GoogleMap = () => {
         if (!map) return;
 
         map.addListener('click', (event) => {
-
             // 緯度経度の取得
             const latitude = event.latLng.lat();
             const longitude = event.latLng.lng();
@@ -92,9 +89,6 @@ const GoogleMap = () => {
                     setShops(results);
                 }
             });
-
-
-
         });
 
     }, [map]);
@@ -121,10 +115,6 @@ const GoogleMap = () => {
             });
         }
 
-        map.addListener('click', (event) => {
-            // (省略)
-        });
-
     }, [map, startLocation, endLocation]);
 
     useEffect(() => {
@@ -137,7 +127,6 @@ const GoogleMap = () => {
 
         setMap(initializedMap);
     }, []);
-
 
     return (
         <div style={{ width: INITIALIZE_MAP_WIDTH, height: INITIALIZE_MAP_HEIGHT }}>
@@ -168,30 +157,18 @@ const GoogleMap = () => {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <ShopPreview setIsOpen={setIsOpen} />
+                    <ShopPreview setIsOpen={setIsOpen} name={ariaLabel} location={location} />
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default GoogleMap;
 
-function ShopPreview({ setIsOpen }) {
-
-
-    useEffect(() => {
-        try {
-            console.log('ShopPreview');
-        } catch (error) {
-            console.error('Error fetching shop details:', error);
-            throw error;
-        }
-    }, [])
-
-
+const ShopPreview = ({ setIsOpen, name, location }) => {
     const [loading, setLoading] = useState(true);
-    const [shopData, setShopData] = useState(dummyData);
+    const [shopData, setShopData] = useState(null);
 
     // ダミーデータを定義
     const dummyData = {
@@ -205,6 +182,14 @@ function ShopPreview({ setIsOpen }) {
         genre: "中華",
         priceRange: "1000~2000円",
     };
+
+    useEffect(() => {
+        // サンプルで少し遅延させてダミーデータをセット
+        setTimeout(() => {
+            setShopData(dummyData);
+            setLoading(false);
+        }, 1000);
+    }, []);
 
     return (
         <Card
@@ -234,26 +219,24 @@ function ShopPreview({ setIsOpen }) {
                             right: '8px',
                             backgroundColor: "gray",
                             color: "white",
-                            borderRadius: "50%", // 完全に丸くする
+                            borderRadius: "50%",
                             width: "30px",
                             height: "30px",
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            cursor: 'pointer', // ポインタを表示
-                            zIndex: 1000, // 一番前面に表示
+                            cursor: 'pointer',
+                            zIndex: 1000,
                         }}
                     >
                         ×
                     </Box>
                     <CardHeader position="relative">
-
-                        <Heading size='md'>{dummyRestaurant.name}</Heading>
-
+                        <Heading size='md'>{shopData?.name}</Heading>
                     </CardHeader>
                     <Image
-                        src={dummyRestaurant.image}
-                        alt={dummyRestaurant.name}
+                        src={shopData?.image}
+                        alt={shopData?.name}
                         borderRadius='md'
                         width="100%"
                         height="auto"
@@ -267,7 +250,7 @@ function ShopPreview({ setIsOpen }) {
                                     住所
                                 </Heading>
                                 <Text pt='2' fontSize='sm'>
-                                    {dummyRestaurant.address}
+                                    {shopData?.address}
                                 </Text>
                             </Box>
                             <Box>
@@ -275,7 +258,7 @@ function ShopPreview({ setIsOpen }) {
                                     電話番号
                                 </Heading>
                                 <Text pt='2' fontSize='sm'>
-                                    {dummyRestaurant.phone}
+                                    {shopData?.phone}
                                 </Text>
                             </Box>
                             <Box>
@@ -283,7 +266,7 @@ function ShopPreview({ setIsOpen }) {
                                     営業時間
                                 </Heading>
                                 <Text pt='2' fontSize='sm'>
-                                    {dummyRestaurant.hours}
+                                    {shopData?.hours}
                                 </Text>
                             </Box>
                             <Box>
@@ -291,7 +274,7 @@ function ShopPreview({ setIsOpen }) {
                                     ジャンル
                                 </Heading>
                                 <Text pt='2' fontSize='sm'>
-                                    {dummyRestaurant.genre}
+                                    {shopData?.genre}
                                 </Text>
                             </Box>
                             <Box>
@@ -299,7 +282,7 @@ function ShopPreview({ setIsOpen }) {
                                     価格帯
                                 </Heading>
                                 <Text pt='2' fontSize='sm'>
-                                    {dummyRestaurant.priceRange}
+                                    {shopData?.priceRange}
                                 </Text>
                             </Box>
                         </Stack>
@@ -307,6 +290,5 @@ function ShopPreview({ setIsOpen }) {
                 </>
             )}
         </Card>
-
     );
-}
+};

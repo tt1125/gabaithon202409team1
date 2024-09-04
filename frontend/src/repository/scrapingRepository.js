@@ -1,32 +1,27 @@
-import axios from 'axios';
-
-HOTPEPPER_API_URL = 'https://webservice.recruit.co.jp/hotpepper/gourmet/v1/shop';
-HOTPEPPER_API_KEY = "700ae201b4d3ba6c"
-
 export default class ScrapingRepository {
 
-    async getShopInfo(locatoin, name) {
+    async getStoreUrlByName(storeName) {
+        const apiKey = "700ae201b4d3ba6c";  // ここにあなたのAPIキーを入力
+        const url = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/";
+
+        const params = new URLSearchParams({
+            key: apiKey,
+            keyword: storeName,  // 店名をキーワードとして使用
+            count: "1",  // 取得する件数（1件のみ）
+            format: "json"  // レスポンス形式 (jsonを推奨)
+        });
 
         try {
-            const response = await axios.get(HOTPEPPER_API_URL, {
-                params: {
-                    key: HOTPEPPER_API_KEY,
-                    id: shopId,
-                    format: 'json'
-                }
-            });
-
-            // レスポンスから必要なデータを取得
-            const shopDetails = response.data.results.shop[0];
-
-            return shopDetails;
+            const response = await fetch(`${url}?${params}`);
+            const data = await response.json();
+            return data;
         } catch (error) {
-            console.error('Error fetching shop details:', error);
-            throw error;
+            console.error('Error fetching data:', error);
+            return null;
         }
-
-
-
-
     }
+
+
 }
+
+

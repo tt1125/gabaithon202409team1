@@ -4,7 +4,7 @@ import json
 GOOGLE_API_KEY = "AIzaSyB_pbAH9btclPdynNTes1lHSQhmy5yugEM"
 
 def find_places(query, location):
-    endpoint = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={GOOGLE_API_KEY}&location={location}&radius=50000&type=restaurant&keyword={query}"
+    endpoint = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={GOOGLE_API_KEY}&location={location}&radius=500000&type=restaurant&keyword={query}"
     response = requests.get(endpoint)
     result = response.json()
     

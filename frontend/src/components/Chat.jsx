@@ -98,6 +98,7 @@ export default function Chat({
           maxWidth: isMobileSize ? '' : '800px', // 修正
           width: isMobileSize ? '100%' : '', // 修正
           padding: '16px', // パディングを追加して見た目を調整
+          marginBottom: "20px",
         }}
       >
         <SearchBox

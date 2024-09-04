@@ -6,7 +6,7 @@ export default class GptRepository {
     try {
       const { lat, lng } = currentPosition
 
-      const useChatGpt = httpsCallable(functions, 'gpt', {
+      const useChatGpt = httpsCallable(functions, 'test', {
         timeout: 3600 * 1000,
       })
 
