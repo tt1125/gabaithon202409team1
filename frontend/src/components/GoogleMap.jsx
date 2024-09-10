@@ -94,7 +94,7 @@ const GoogleMap = () => {
     }, [map]);
 
     useEffect(() => {
-        if (!map) return;
+        if (!map) return
 
         // スタート地点、ゴール地点の地点間のルートを計算し、その結果を処理する(追加)
         if (startLocation && endLocation) {
